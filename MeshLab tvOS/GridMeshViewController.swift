@@ -48,12 +48,8 @@ class GridMeshViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         startLidar()
-        
         coordinator.start()
-        
         configureGestures()
     }
     

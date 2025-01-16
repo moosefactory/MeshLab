@@ -44,10 +44,10 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
     let sceneRenderer: SCNSceneRenderer
     
     /// The meshBuilder keeps all info necessary to mesh creation, and generates geometry on demand.
-    var meshBuilder: MFSCNTerrainMeshGeometryBuilder
+    var meshBuilder: MFSCNTerrainMeshGeometryBuilder!
     
     /// The mesh information used to configure the mesh builder
-    var meshInfo: MFSKMeshInfo
+    //var meshInfo: MFSKMeshInfo
     
     /// The mesh node itself, set to the result of the mesh builder
     var meshNode: SCNNode? = nil
@@ -101,6 +101,34 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         
         scene = SCNScene(named: "Art.scnassets/stage.scn")!
         
+        super.init()
+
+        let meshInfo = makeMeshInfo()
+    
+        meshBuilder = try! MFSCNTerrainMeshGeometryBuilder(meshInfo: meshInfo)
+        
+        let meshPivot: SCNNode = scene.rootNode.childNode(withName: "meshPivot", recursively: true)!
+        
+        let meshNode = SCNNode(geometry: try! meshBuilder.makeGeometry())
+        meshPivot.addChildNode(meshNode)
+        
+        
+        self.meshPivot = meshPivot
+        self.meshNode = meshNode
+        
+        meshNode.castsShadow = true
+        
+        sceneRenderer.delegate = self
+        
+        sceneRenderer.scene = scene
+        
+        sceneRenderer.pointOfView = cameraNode
+        updatePosition()
+        startAnimation()
+    }
+    
+    func makeMeshInfo() -> MFSKMeshInfo {
+        
         // 1 Grid Init
         
         let gridInfo = MFSCNTerrainMesh.GridInfo(gridSize: try! MFGridSize.init(size: UInt(resolution)),
@@ -120,31 +148,9 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         // Assemble mesh information
         
         
-        meshInfo = MFSKMeshInfo(gridInfo: gridInfo,
+        return MFSKMeshInfo(gridInfo: gridInfo,
                                 heightMapInfo: heightInfo,
                                 mappingInfo: textureInfo)
-        
-        meshBuilder = try! MFSCNTerrainMeshGeometryBuilder(meshInfo: meshInfo)
-        
-        let meshPivot: SCNNode = scene.rootNode.childNode(withName: "meshPivot", recursively: true)!
-        
-        let meshNode = SCNNode(geometry: try! meshBuilder.makeGeometry())
-        meshPivot.addChildNode(meshNode)
-        
-        super.init()
-        
-        self.meshPivot = meshPivot
-        self.meshNode = meshNode
-        
-        meshNode.castsShadow = true
-        
-        sceneRenderer.delegate = self
-        
-        sceneRenderer.scene = scene
-        
-        sceneRenderer.pointOfView = cameraNode
-        updatePosition()
-        startAnimation()
     }
     
     func startAnimation() {
@@ -199,10 +205,10 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
 
     /// Initialize the grid object
     func makeGrid() {
-        let gridSize = try! MFGridSize(size: UInt(resolution))
+        let gridSize = MFGridSize(size: UInt(resolution))
         let cellSize = CGSize.square(20)
         
-        let grid = MFGrid(gridSize:gridSize,
+        let grid = MFDataGrid(gridSize:gridSize,
                           cellSize: cellSize)
         self.grid = grid
         
@@ -259,26 +265,28 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
     
     let birthProbability = 0.02
     
-    func makeDataLayer(with grid: MFGrid) -> MFGridDataLayerItem {
+    func makeDataLayer(with grid: MFDataGrid) -> MFGridDataLayerItem {
         let layer = MFGridDataLayer<CellData>.init(grid: grid,
-                                                   allocator: { cell in
+                                                   allocator: { scanner in
+            let cell = scanner.cell!
+            
             let g = cell.gridLocation
             let bl = g.v == 0 && g.h == 0
             let br = g.v == 0 && g.h == grid.gridSize.columns - 1
             let tr = g.v == grid.gridSize.rows - 1 && g.h == 0
             
-            let f = cell.fractionalLocation(for: grid.gridSize)
+            let f = cell.gridLocation.fractionalLocation(for: grid.gridSize)
             return (bl || tr || br) ? CellData(value: f.x * f.y) : nil
         },
                                                    cellRenderer: {
-            cell, context, data in
+            scanner, context, data in
             
-            let frame = cell.frame(for: grid.cellSize)
+            let frame = scanner.cell.gridLocation.frame(for: grid.cellSize)
             
             context.saveGState()
             context.addRect(frame)
-            let f = cell.fractionalLocation(for: grid.gridSize)
-            let g = cell.gridLocation
+            let f = scanner.cell.gridLocation.fractionalLocation(for: grid.gridSize)
+            let g = scanner.cell.gridLocation
             let bl = g.v == 0 && g.h == 0
             let br = g.v == 0 && g.h == grid.gridSize.columns - 1
             let tr = g.v == grid.gridSize.rows - 1 && g.h == 0
