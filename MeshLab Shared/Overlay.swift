@@ -48,6 +48,13 @@ class Overlay: SKScene {
         case wireframe = "Wireframe"
     }
     
+    /// The type for option buttons.
+    ///
+    /// Options trigger instant actions, like 'toggle wireframe' or 'randomize'
+    enum Action: String, CaseIterable, ButtonOption {
+        case randomize = "Randomize"
+    }
+
     // MARK: - Properties
     
     /// The scene coordinator.
@@ -77,6 +84,8 @@ class Overlay: SKScene {
     
     lazy var gamePadButton: RemoteSessionButton = childNode(withName: "/modeButtons/GamePadButton") as! RemoteSessionButton
     
+    lazy var randomizeButton: SKNode = childNode(withName: "/optionButtons/RandomizeButton")!
+
     lazy var buttons: [SKSpriteNode] = Mode.allCases.map {
         modeButtonsPanel.childNode(withName: $0.buttonName) as! SKSpriteNode
     }
