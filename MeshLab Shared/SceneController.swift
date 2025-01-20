@@ -16,6 +16,7 @@ import MFGridUtils
 import MFRemotes
 
 class CellData: Equatable {
+    
     internal init(value: Double = .random()) {
         self.value = value
     }
@@ -44,10 +45,10 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
     let sceneRenderer: SCNSceneRenderer
     
     /// The meshBuilder keeps all info necessary to mesh creation, and generates geometry on demand.
-    var meshBuilder: MFSCNTerrainMeshGeometryBuilder
+    var meshBuilder: MFSCNGridMesh
     
     /// The mesh information used to configure the mesh builder
-    var meshInfo: MFSKMeshInfo
+    var meshInfo: MFSCNMeshInfo
     
     /// The mesh node itself, set to the result of the mesh builder
     var meshNode: SCNNode? = nil
@@ -57,15 +58,13 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
     var gridBitmap: CGContext!
     
     lazy var functionParams = FunctionParams()
-
-    
     
     var grid: MFGrid!
-
+    
     var dataLayer: MFGridDataLayer<CellData>!
     
     var lastLoc: CGPoint?
-
+    
     var scale: CGFloat = 1 {
         didSet {
             var h = meshBuilder.meshInfo.heightMapInfo?.height ?? 0
@@ -108,27 +107,29 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         
         // 2 Height data and closure
         
-        let heightInfo = MFSKMeshHeightMapInfo(with: nil,
-                                               height: 2,
-                                               textureScale: CGSize.one)
+        let heightInfo = MFSCNMeshHeightMapInfo(with: nil,
+                                                height: 2,
+                                                textureScale: CGSize.one)
         
         // 3 Texture
         
-        let textureInfo = MFSKMeshTextureInfo(textureScale: .one,
-                                              textureBaseName: "Icon_512",
-                                              color: PlatformColor.blue)
+        let textureInfo = MFSCNMeshTextureInfo(textureScale: .one,
+                                               textureBaseName: "Icon_512",
+                                               color: PlatformColor.blue)
         // Assemble mesh information
         
         
-        meshInfo = MFSKMeshInfo(gridInfo: gridInfo,
-                                heightMapInfo: heightInfo,
-                                mappingInfo: textureInfo)
+        meshInfo = MFSCNMeshInfo(gridInfo: gridInfo,
+                                 heightMapInfo: heightInfo,
+                                 mappingInfo: textureInfo)
         
-        meshBuilder = try! MFSCNTerrainMeshGeometryBuilder(meshInfo: meshInfo)
+        meshBuilder = try! MFSCNGridMesh(meshInfo: meshInfo)
         
         let meshPivot: SCNNode = scene.rootNode.childNode(withName: "meshPivot", recursively: true)!
-        
-        let meshNode = SCNNode(geometry: try! meshBuilder.makeGeometry())
+        let geometry = try! meshBuilder.makeGeometry()
+        let material = meshBuilder.makeMaterial()
+        geometry.firstMaterial = material
+        let meshNode = SCNNode(geometry: geometry)
         meshPivot.addChildNode(meshNode)
         
         super.init()
@@ -168,8 +169,6 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         
         let geometry = try! meshBuilder.makeGeometry()
         let material = meshBuilder.makeMaterial()
-        material.transparencyMode = .aOne
-        
         geometry.firstMaterial = material
         meshNode!.geometry = geometry
         meshNode!.castsShadow = true
@@ -196,14 +195,14 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         meshPivot.worldPosition = SCNVector3(x: 0, y: 0, z: 0)
         meshPivot.rotation = SCNVector4(x: -1, y: 0.0, z: 0, w: .pi / 2)
     }
-
+    
     /// Initialize the grid object
     func makeGrid() {
         let gridSize = try! MFGridSize(size: UInt(resolution))
         let cellSize = CGSize.square(20)
         
-        let grid = MFGrid(gridSize:gridSize,
-                          cellSize: cellSize)
+        let grid = MFDataGrid(gridSize:gridSize,
+                              cellSize: cellSize)
         self.grid = grid
         
         let dataLayer = makeDataLayer(with: grid)
@@ -218,7 +217,7 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         let f = self.functionParams
         let height = f.maxHeight * attenuation
         
-        let heightComputeBlock: MFSKHeightComputeBlock = {
+        let heightComputeBlock: MFSCNHeightComputeBlock = {
             value, gridLoc, fractionalLoc  in
             
             let dx = fractionalLoc.x - 0.5
@@ -234,24 +233,24 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         }
         
         
-        if gridBitmap == nil {
-            let bitmap = try? grid.makeContext(gridStyle: gridStyle)
-            self.gridBitmap = bitmap
-        } else {
-            grid.render(context: gridBitmap, style: gridStyle)
-        }
-        
-        
-        if let bitmap = self.gridBitmap {
-            self.meshBuilder.meshInfo.mappingInfo = MFSKMeshTextureInfo(textureScale: .one,
-                                                                        textureBitmap: bitmap,
-                                                                        color: nil)
-        }
-        
-        self.meshBuilder.meshInfo.heightMapInfo = MFSKMeshHeightMapInfo(with: nil,
-                                                                        height: 5,
-                                                                        textureScale: CGSize.one,
-                                                                        heightComputeBlock: heightComputeBlock)
+//        if gridBitmap == nil {
+//            let bitmap = try? grid.makeContext(gridStyle: gridStyle)
+//            self.gridBitmap = bitmap
+//        } else {
+//            grid.render(context: gridBitmap, style: gridStyle)
+//        }
+//        
+//        
+//        if let bitmap = self.gridBitmap {
+//            self.meshBuilder.meshInfo.mappingInfo = MFSCNMeshTextureInfo(textureScale: .one,
+//                                                                         textureBitmap: bitmap,
+//                                                                         color: nil)
+//        }
+//        
+        self.meshBuilder.meshInfo.heightMapInfo = MFSCNMeshHeightMapInfo(with: nil,
+                                                                         height: 5,
+                                                                         textureScale: CGSize.one,
+                                                                         heightComputeBlock: heightComputeBlock)
         
     }
     
@@ -259,26 +258,26 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
     
     let birthProbability = 0.02
     
-    func makeDataLayer(with grid: MFGrid) -> MFGridDataLayerItem {
+    func makeDataLayer(with grid: MFDataGrid) -> MFGridDataLayerItem {
         let layer = MFGridDataLayer<CellData>.init(grid: grid,
-                                                   allocator: { cell in
-            let g = cell.gridLocation
+                                                   allocator: { scanner in
+            let g = scanner.cell.gridLocation
             let bl = g.v == 0 && g.h == 0
             let br = g.v == 0 && g.h == grid.gridSize.columns - 1
             let tr = g.v == grid.gridSize.rows - 1 && g.h == 0
             
-            let f = cell.fractionalLocation(for: grid.gridSize)
+            let f = scanner.cell.fractionalFrame.origin
             return (bl || tr || br) ? CellData(value: f.x * f.y) : nil
         },
                                                    cellRenderer: {
-            cell, context, data in
+            scanner, context, data in
             
-            let frame = cell.frame(for: grid.cellSize)
+            let frame = scanner.cell.fractionalFrame
             
             context.saveGState()
             context.addRect(frame)
-            let f = cell.fractionalLocation(for: grid.gridSize)
-            let g = cell.gridLocation
+            let f = frame.origin
+            let g = scanner.cell.gridLocation
             let bl = g.v == 0 && g.h == 0
             let br = g.v == 0 && g.h == grid.gridSize.columns - 1
             let tr = g.v == grid.gridSize.rows - 1 && g.h == 0
