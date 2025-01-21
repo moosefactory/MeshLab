@@ -196,10 +196,15 @@ class Overlay: SKScene {
         
         if let mode = Overlay.Mode(rawValue: data) {
             coordinator.changeMode(mode: mode)
+            return true
         }
         else if let option = Overlay.Option(rawValue: data) {
             coordinator.changeOption(option: option)
+            return true
         }
+        
+        let action = Remote.Action(identifier: data)
+        coordinator.handle(action: action)
         
         return true
     }
