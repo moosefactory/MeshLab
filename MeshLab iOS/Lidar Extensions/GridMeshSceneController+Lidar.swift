@@ -34,15 +34,14 @@ extension SceneController {
                 let bitmap = try uiImage.bitmap()
                 
                 self.meshBuilder.meshInfo.heightMapInfo =
-                MFSKMeshHeightMapInfo(with: bitmap, height: 5)
+                MFSCNMeshHeightMapInfo(with: bitmap, height: 5)
             }
             
             if let cgImage = ciImage.toCGImage() {
                 let uiImage =  UIImage(cgImage: cgImage)
                 let bitmap = try uiImage.bitmap()
                 
-                self.meshBuilder.textureImage = uiImage
-                self.meshBuilder.meshInfo.mappingInfo = MFSKMeshTextureInfo(textureScale: .one, textureBitmap: bitmap, color: nil)
+                self.meshBuilder.meshInfo.mappingInfo = MFSCNMeshTextureInfo(textureScale: .one, textureBitmap: bitmap, color: nil)
             }
             
             self.meshNode?.geometry = try! self.meshBuilder.makeGeometry()

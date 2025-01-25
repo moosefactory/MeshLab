@@ -16,6 +16,7 @@ class Remote: MFRemotesAPIProtocol {
         var identifier: String
         
         static let start = Remote.Action(identifier: "start")
+        static let randomize = Remote.Action(identifier: "Randomize")
         static let handshake = Remote.Action(identifier: "handshake")
     }
     

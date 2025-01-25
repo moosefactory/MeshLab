@@ -236,14 +236,15 @@ class Coordinator {
         overlayScene.mode = mode
     }
     
-    func handle(action: Remote.Action) {
+    @MainActor func handle(action: Remote.Action) -> Bool {
         switch action {
-        case .start:
-            print("start")
+        case .randomize:
+            gridMeshSceneController.randomize()
         default:
             print("action not handled")
-
+            return false
         }
+        return true
     }
     
     func changeOption(option: Overlay.Option) {

@@ -24,12 +24,12 @@ class GridMeshViewController: NSViewController {
     
     /// The coordinator does the link between the app logic, the SceneKit 3D scene, and the SpriteKit overlay
     
-    lazy var coordinator = Coordinator(remotesAPI: Remote(),
-                                              scnView: scnView)
+    lazy var coordinator = Coordinator(remotesAPI: Remote(), scnView: scnView)
 
     /// Convenient accessor to SceneKit SCNView
     var scnView: SCNView { self.view as! SCNView }
     
+   
     
     /// We keep app gestures in an array for enable/disable
     var appGestureRecognizers = Set<NSGestureRecognizer>()
@@ -38,6 +38,8 @@ class GridMeshViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        scnView.allowsCameraControl = true
+        
         coordinator.start()
         
         configureGestures()
@@ -53,6 +55,9 @@ class GridMeshViewController: NSViewController {
         doubleClickGesture.numberOfClicksRequired = 2
         
         let panGesture = NSPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        
+        // Application starts with camera control on
+        panGesture.isEnabled = false
         
         appGestureRecognizers = [
             clickGesture, doubleClickGesture, panGesture
@@ -72,6 +77,7 @@ class GridMeshViewController: NSViewController {
     func handlePan(_ gestureRecognizer: NSPanGestureRecognizer) {
         coordinator.mouseMovedOrPan(at: gestureRecognizer.location(in: nil))
     }
+    
     /// Propagates the mouse moved events through the coordinator
     /// - Parameter event: The mouse event
 //    override func mouseMoved(with event: NSEvent) {
