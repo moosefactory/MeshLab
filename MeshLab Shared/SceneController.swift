@@ -45,7 +45,7 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
     let sceneRenderer: SCNSceneRenderer
     
     /// The meshBuilder keeps all info necessary to mesh creation, and generates geometry on demand.
-    var meshBuilder: MFSCNGridMesh
+    var meshBuilder: MFSCNGridMeshGeometry
     
     /// The mesh information used to configure the mesh builder
     var meshInfo: MFSCNMeshInfo
@@ -102,7 +102,7 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         
         // 1 Grid Init
         
-        let gridInfo = MFSCNTerrainMesh.GridInfo(gridSize: try! MFGridSize.init(size: UInt(resolution)),
+        let gridInfo = MFSCNMeshGridInfo(gridSize: try! MFGridSize.init(size: UInt(resolution)),
                                                  cellSize: CGSize.square(0.07 * 128.0 / CGFloat(resolution)))
         
         // 2 Height data and closure
@@ -123,11 +123,12 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
                                  heightMapInfo: heightInfo,
                                  mappingInfo: textureInfo)
         
-        meshBuilder = try! MFSCNGridMesh(meshInfo: meshInfo)
+        meshBuilder = try! MFSCNGridMeshGeometry(meshInfo: meshInfo)
         
         let meshPivot: SCNNode = scene.rootNode.childNode(withName: "meshPivot", recursively: true)!
         let geometry = try! meshBuilder.makeGeometry()
         let material = meshBuilder.makeMaterial()
+        
         geometry.firstMaterial = material
         let meshNode = SCNNode(geometry: geometry)
         meshPivot.addChildNode(meshNode)

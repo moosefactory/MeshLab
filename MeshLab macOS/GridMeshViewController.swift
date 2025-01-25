@@ -55,6 +55,7 @@ class GridMeshViewController: NSViewController {
         doubleClickGesture.numberOfClicksRequired = 2
         
         let panGesture = NSPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        
         // Application starts with camera control on
         panGesture.isEnabled = false
         
