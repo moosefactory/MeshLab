@@ -80,7 +80,7 @@ class SceneController: NSObject, SCNSceneRendererDelegate {
         }
     }
     
-#if !os(macOS) && !os(tvOS)
+#if !os(macOS) && !os(tvOS) && !os(visionOS)
     
     /// On iOS, this property is set on capure data reception.
     /// Mesh heights are then updated accordingly

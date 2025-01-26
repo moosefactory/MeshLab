@@ -13,6 +13,9 @@
 		BC6CEAAB2D39530100463D24 /* MFRemotes in Frameworks */ = {isa = PBXBuildFile; productRef = BC6CEAAA2D39530100463D24 /* MFRemotes */; };
 		BC6CEB8E2D3960AF00463D24 /* MFRemotes in Frameworks */ = {isa = PBXBuildFile; productRef = BC6CEB8D2D3960AF00463D24 /* MFRemotes */; };
 		BC7A93D52D3739BD00B032B8 /* MFRemotes in Frameworks */ = {isa = PBXBuildFile; productRef = BC7A93D42D3739BD00B032B8 /* MFRemotes */; };
+		BC8346722D46999A007E7B5E /* MFRemotes in Frameworks */ = {isa = PBXBuildFile; productRef = BC8346712D46999A007E7B5E /* MFRemotes */; };
+		BC8346742D46999A007E7B5E /* MFSCNExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = BC8346732D46999A007E7B5E /* MFSCNExtensions */; };
+		BC8346762D46999A007E7B5E /* UniColor in Frameworks */ = {isa = PBXBuildFile; productRef = BC8346752D46999A007E7B5E /* UniColor */; };
 		BCBE07932D3FEBD30016D1B2 /* MFSCNExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = BCBE07922D3FEBD30016D1B2 /* MFSCNExtensions */; };
 		BCE1AFB42D3843F0002B147E /* MFSCNExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = BCE1AFB32D3843F0002B147E /* MFSCNExtensions */; };
 		BCE1B0C02D385B13002B147E /* MFGridUtils in Frameworks */ = {isa = PBXBuildFile; productRef = BCE1B0BF2D385B13002B147E /* MFGridUtils */; };
@@ -23,11 +26,23 @@
 		BCF728D02D4271880044F24E /* UniColor in Frameworks */ = {isa = PBXBuildFile; productRef = BCF728CF2D4271880044F24E /* UniColor */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BC8346062D465AAF007E7B5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC108DAF2D2A7BA70038BB03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC8345F02D465AAD007E7B5E;
+			remoteInfo = MeshLab;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		BC108DBB2D2A7BAD0038BB03 /* MeshLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeshLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC108DCC2D2A7BAD0038BB03 /* MeshLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeshLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC108DDC2D2A7BAD0038BB03 /* MeshLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeshLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC635F092D332508009F37FF /* MeshLab VisionOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = "MeshLab VisionOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC8345F12D465AAD007E7B5E /* MeshLab visionOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MeshLab visionOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC8345F42D465AAD007E7B5E /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		BC8346052D465AAF007E7B5E /* MeshLabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeshLabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -61,13 +76,13 @@
 				Resources/Textures/MeshTexture/MeshTexture_Diffuse.png,
 				Resources/Textures/MeshTexture/MeshTexture_Metalic.png,
 				Resources/Textures/moose.jpg,
-				Resources/Textures/mooseSix.jpg,
 				Resources/Textures/Water/water_AmbientOcclusion.jpg,
 				Resources/Textures/Water/water_Diffuse.jpg,
 				Resources/Textures/Water/water_Height.png,
 				Resources/Textures/Water/water_Normal.jpg,
 				Resources/Textures/Water/water_Roughness.jpg,
 				SceneController.swift,
+				"SceneController+MeshInfo.swift",
 			);
 			target = BC108DBA2D2A7BAD0038BB03 /* MeshLab iOS */;
 		};
@@ -101,13 +116,13 @@
 				Resources/Textures/MeshTexture/MeshTexture_Diffuse.png,
 				Resources/Textures/MeshTexture/MeshTexture_Metalic.png,
 				Resources/Textures/moose.jpg,
-				Resources/Textures/mooseSix.jpg,
 				Resources/Textures/Water/water_AmbientOcclusion.jpg,
 				Resources/Textures/Water/water_Diffuse.jpg,
 				Resources/Textures/Water/water_Height.png,
 				Resources/Textures/Water/water_Normal.jpg,
 				Resources/Textures/Water/water_Roughness.jpg,
 				SceneController.swift,
+				"SceneController+MeshInfo.swift",
 			);
 			target = BC108DCB2D2A7BAD0038BB03 /* MeshLab tvOS */;
 		};
@@ -141,13 +156,13 @@
 				Resources/Textures/MeshTexture/MeshTexture_Diffuse.png,
 				Resources/Textures/MeshTexture/MeshTexture_Metalic.png,
 				Resources/Textures/moose.jpg,
-				Resources/Textures/mooseSix.jpg,
 				Resources/Textures/Water/water_AmbientOcclusion.jpg,
 				Resources/Textures/Water/water_Diffuse.jpg,
 				Resources/Textures/Water/water_Height.png,
 				Resources/Textures/Water/water_Normal.jpg,
 				Resources/Textures/Water/water_Roughness.jpg,
 				SceneController.swift,
+				"SceneController+MeshInfo.swift",
 			);
 			target = BC108DDB2D2A7BAD0038BB03 /* MeshLab macOS */;
 		};
@@ -165,16 +180,23 @@
 			);
 			target = BC108DDB2D2A7BAD0038BB03 /* MeshLab macOS */;
 		};
-		BC635F102D332508009F37FF /* Exceptions for "MeshLab VisionOS" folder in "MeshLab VisionOS" target */ = {
+		BC83460F2D465AAF007E7B5E /* Exceptions for "MeshLab VisionOS" folder in "MeshLab visionOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = BC635F082D332508009F37FF /* MeshLab VisionOS */;
+			target = BC8345F02D465AAD007E7B5E /* MeshLab visionOS */;
 		};
-		BCF5018B2D33B5F8009259B8 /* Exceptions for "MeshLab Shared" folder in "MeshLab VisionOS" target */ = {
+		BC8346162D4681B6007E7B5E /* Exceptions for "MeshLab Shared" folder in "MeshLab visionOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				CGPolarPoint.swift,
+				Coordinator.swift,
+				FunctionParams.swift,
+				Overlay.swift,
+				Remote.swift,
+				RemoteSessionButton.swift,
+				Resources/Art.scnassets,
 				Resources/Icons/Bonjour_On.png,
 				Resources/Icons/Bonjour.png,
 				Resources/Icons/Camera_On.png,
@@ -189,8 +211,13 @@
 				Resources/Icons/RemoteSatelite.png,
 				Resources/Icons/Wireframe_On.png,
 				Resources/Icons/Wireframe.png,
+				Resources/Overlay.sks,
+				Resources/Textures/Icon_512.png,
+				Resources/Textures/moose.jpg,
+				SceneController.swift,
+				"SceneController+MeshInfo.swift",
 			);
-			target = BC635F082D332508009F37FF /* MeshLab VisionOS */;
+			target = BC8345F02D465AAD007E7B5E /* MeshLab visionOS */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -201,7 +228,7 @@
 				BC108DEF2D2A7BAD0038BB03 /* Exceptions for "MeshLab Shared" folder in "MeshLab iOS" target */,
 				BC108DF32D2A7BAD0038BB03 /* Exceptions for "MeshLab Shared" folder in "MeshLab tvOS" target */,
 				BC108DF72D2A7BAD0038BB03 /* Exceptions for "MeshLab Shared" folder in "MeshLab macOS" target */,
-				BCF5018B2D33B5F8009259B8 /* Exceptions for "MeshLab Shared" folder in "MeshLab VisionOS" target */,
+				BC8346162D4681B6007E7B5E /* Exceptions for "MeshLab Shared" folder in "MeshLab visionOS" target */,
 			);
 			path = "MeshLab Shared";
 			sourceTree = "<group>";
@@ -225,12 +252,17 @@
 			path = "MeshLab macOS";
 			sourceTree = "<group>";
 		};
-		BC635F0A2D332508009F37FF /* MeshLab VisionOS */ = {
+		BC8345F22D465AAD007E7B5E /* MeshLab VisionOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				BC635F102D332508009F37FF /* Exceptions for "MeshLab VisionOS" folder in "MeshLab VisionOS" target */,
+				BC83460F2D465AAF007E7B5E /* Exceptions for "MeshLab VisionOS" folder in "MeshLab visionOS" target */,
 			);
 			path = "MeshLab VisionOS";
+			sourceTree = "<group>";
+		};
+		BC8346082D465AAF007E7B5E /* MeshLabTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MeshLabTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -271,7 +303,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BC635F062D332508009F37FF /* Frameworks */ = {
+		BC8345EE2D465AAD007E7B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC8346742D46999A007E7B5E /* MFSCNExtensions in Frameworks */,
+				BC8346722D46999A007E7B5E /* MFRemotes in Frameworks */,
+				BC8346762D46999A007E7B5E /* UniColor in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC8346022D465AAF007E7B5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,8 +330,9 @@
 				BC108DBD2D2A7BAD0038BB03 /* MeshLab iOS */,
 				BC108DCD2D2A7BAD0038BB03 /* MeshLab tvOS */,
 				BC108DDD2D2A7BAD0038BB03 /* MeshLab macOS */,
-				BC635F0A2D332508009F37FF /* MeshLab VisionOS */,
-				BC1094FB2D2AF9950038BB03 /* Frameworks */,
+				BC8345F22D465AAD007E7B5E /* MeshLab VisionOS */,
+				BC8346082D465AAF007E7B5E /* MeshLabTests */,
+				BC8345F32D465AAD007E7B5E /* Packages */,
 				BC108DBC2D2A7BAD0038BB03 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -300,16 +343,18 @@
 				BC108DBB2D2A7BAD0038BB03 /* MeshLab.app */,
 				BC108DCC2D2A7BAD0038BB03 /* MeshLab.app */,
 				BC108DDC2D2A7BAD0038BB03 /* MeshLab.app */,
-				BC635F092D332508009F37FF /* MeshLab VisionOS.appex */,
+				BC8345F12D465AAD007E7B5E /* MeshLab visionOS.app */,
+				BC8346052D465AAF007E7B5E /* MeshLabTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BC1094FB2D2AF9950038BB03 /* Frameworks */ = {
+		BC8345F32D465AAD007E7B5E /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				BC8345F42D465AAD007E7B5E /* RealityKitContent */,
 			);
-			name = Frameworks;
+			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,27 +440,53 @@
 			productReference = BC108DDC2D2A7BAD0038BB03 /* MeshLab.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BC635F082D332508009F37FF /* MeshLab VisionOS */ = {
+		BC8345F02D465AAD007E7B5E /* MeshLab visionOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC635F112D332508009F37FF /* Build configuration list for PBXNativeTarget "MeshLab VisionOS" */;
+			buildConfigurationList = BC8346102D465AAF007E7B5E /* Build configuration list for PBXNativeTarget "MeshLab visionOS" */;
 			buildPhases = (
-				BC635F052D332508009F37FF /* Sources */,
-				BC635F062D332508009F37FF /* Frameworks */,
-				BC635F072D332508009F37FF /* Resources */,
+				BC8345ED2D465AAD007E7B5E /* Sources */,
+				BC8345EE2D465AAD007E7B5E /* Frameworks */,
+				BC8345EF2D465AAD007E7B5E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				BC635F0A2D332508009F37FF /* MeshLab VisionOS */,
+				BC8345F22D465AAD007E7B5E /* MeshLab VisionOS */,
 			);
-			name = "MeshLab VisionOS";
+			name = "MeshLab visionOS";
+			packageProductDependencies = (
+				BC8346712D46999A007E7B5E /* MFRemotes */,
+				BC8346732D46999A007E7B5E /* MFSCNExtensions */,
+				BC8346752D46999A007E7B5E /* UniColor */,
+			);
+			productName = MeshLab;
+			productReference = BC8345F12D465AAD007E7B5E /* MeshLab visionOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BC8346042D465AAF007E7B5E /* MeshLabTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC8346112D465AAF007E7B5E /* Build configuration list for PBXNativeTarget "MeshLabTests" */;
+			buildPhases = (
+				BC8346012D465AAF007E7B5E /* Sources */,
+				BC8346022D465AAF007E7B5E /* Frameworks */,
+				BC8346032D465AAF007E7B5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BC8346072D465AAF007E7B5E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BC8346082D465AAF007E7B5E /* MeshLabTests */,
+			);
+			name = MeshLabTests;
 			packageProductDependencies = (
 			);
-			productName = "MeshLab VisionOS";
-			productReference = BC635F092D332508009F37FF /* MeshLab VisionOS.appex */;
-			productType = "com.apple.product-type.extensionkit-extension";
+			productName = MeshLabTests;
+			productReference = BC8346052D465AAF007E7B5E /* MeshLabTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -436,8 +507,12 @@
 					BC108DDB2D2A7BAD0038BB03 = {
 						CreatedOnToolsVersion = 16.0;
 					};
-					BC635F082D332508009F37FF = {
+					BC8345F02D465AAD007E7B5E = {
 						CreatedOnToolsVersion = 16.0;
+					};
+					BC8346042D465AAF007E7B5E = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = BC8345F02D465AAD007E7B5E;
 					};
 				};
 			};
@@ -463,7 +538,8 @@
 				BC108DBA2D2A7BAD0038BB03 /* MeshLab iOS */,
 				BC108DCB2D2A7BAD0038BB03 /* MeshLab tvOS */,
 				BC108DDB2D2A7BAD0038BB03 /* MeshLab macOS */,
-				BC635F082D332508009F37FF /* MeshLab VisionOS */,
+				BC8345F02D465AAD007E7B5E /* MeshLab visionOS */,
+				BC8346042D465AAF007E7B5E /* MeshLabTests */,
 			);
 		};
 /* End PBXProject section */
@@ -490,7 +566,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BC635F072D332508009F37FF /* Resources */ = {
+		BC8345EF2D465AAD007E7B5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC8346032D465AAF007E7B5E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -521,7 +604,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BC635F052D332508009F37FF /* Sources */ = {
+		BC8345ED2D465AAD007E7B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC8346012D465AAF007E7B5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -529,6 +619,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BC8346072D465AAF007E7B5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC8345F02D465AAD007E7B5E /* MeshLab visionOS */;
+			targetProxy = BC8346062D465AAF007E7B5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		BC108DF12D2A7BAD0038BB03 /* Debug */ = {
@@ -823,26 +921,26 @@
 			};
 			name = Release;
 		};
-		BC635F122D332508009F37FF /* Debug */ = {
+		BC83460B2D465AAF007E7B5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MeshLab VisionOS/Preview Content\"";
 				DEVELOPMENT_TEAM = VMXFN634RR;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MeshLab VisionOS/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "MeshLab VisionOS";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moosefactory.MeshLab-VisionOS";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.moosefactory.eu.MeshLab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
-				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -851,30 +949,73 @@
 			};
 			name = Debug;
 		};
-		BC635F132D332508009F37FF /* Release */ = {
+		BC83460C2D465AAF007E7B5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MeshLab VisionOS/Preview Content\"";
 				DEVELOPMENT_TEAM = VMXFN634RR;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MeshLab VisionOS/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "MeshLab VisionOS";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moosefactory.MeshLab-VisionOS";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.moosefactory.eu.MeshLab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
-				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 7;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		BC83460D2D465AAF007E7B5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VMXFN634RR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.moosefactory.eu.MeshLabTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeshLab.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MeshLab";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		BC83460E2D465AAF007E7B5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VMXFN634RR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.moosefactory.eu.MeshLabTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeshLab.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MeshLab";
 				VALIDATE_PRODUCT = YES;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -919,11 +1060,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BC635F112D332508009F37FF /* Build configuration list for PBXNativeTarget "MeshLab VisionOS" */ = {
+		BC8346102D465AAF007E7B5E /* Build configuration list for PBXNativeTarget "MeshLab visionOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BC635F122D332508009F37FF /* Debug */,
-				BC635F132D332508009F37FF /* Release */,
+				BC83460B2D465AAF007E7B5E /* Debug */,
+				BC83460C2D465AAF007E7B5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC8346112D465AAF007E7B5E /* Build configuration list for PBXNativeTarget "MeshLabTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC83460D2D465AAF007E7B5E /* Debug */,
+				BC83460E2D465AAF007E7B5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -983,6 +1133,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC7A93D32D3739BD00B032B8 /* XCRemoteSwiftPackageReference "MFRemotes" */;
 			productName = MFRemotes;
+		};
+		BC8346712D46999A007E7B5E /* MFRemotes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC7A93D32D3739BD00B032B8 /* XCRemoteSwiftPackageReference "MFRemotes" */;
+			productName = MFRemotes;
+		};
+		BC8346732D46999A007E7B5E /* MFSCNExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCBE07912D3FEBD30016D1B2 /* XCRemoteSwiftPackageReference "MFSCNExtensions" */;
+			productName = MFSCNExtensions;
+		};
+		BC8346752D46999A007E7B5E /* UniColor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCF728CC2D4271070044F24E /* XCLocalSwiftPackageReference "../../mftoolkit/UniColor" */;
+			productName = UniColor;
 		};
 		BCBE07922D3FEBD30016D1B2 /* MFSCNExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
